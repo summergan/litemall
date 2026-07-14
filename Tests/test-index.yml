@@ -1,0 +1,43 @@
+version: 1
+project: litemall
+feature: product-discovery
+business_path:
+  - home
+  - goods-list
+  - goods-detail
+  - specification-and-stock
+  - related-goods
+test_case_id_format: MALL-<CHAIN>-AC<NN>-<LAYER>-<NNN>
+commands:
+  preflight: ./Tests/scripts/run-layered-tests.sh preflight
+  backend-ut: ./Tests/scripts/run-layered-tests.sh browse-backend-ut
+  contract: ./Tests/scripts/run-layered-tests.sh browse-contract
+  frontend-it: ./Tests/scripts/run-layered-tests.sh browse-frontend-it
+  e2e: ./Tests/scripts/run-layered-tests.sh browse-e2e
+  fast: ./Tests/scripts/run-layered-tests.sh browse-fast
+layers:
+  backend-ut:
+    tests:
+      - backend/src/test/java/org/linlinjava/litemall/tests/unit/WxProductBrowsingUnitTest.java
+    boundary: controlled Controller dependencies; no HTTP, database, or page evidence
+  contract:
+    tests:
+      - backend/src/test/java/org/linlinjava/litemall/tests/contract/ProductBrowsingContractTest.java
+    contracts:
+      - contracts/product-browsing-api.contract.json
+    boundary: static route/method/query compatibility; not complete runtime schema evidence
+  frontend-it:
+    tests:
+      - frontend/tests/it/mobile-product-browsing-api.it.test.ts
+    boundary: API client request construction; no backend behavior or page evidence
+  e2e:
+    tests:
+      - e2e/tests/product-browsing-flow.spec.ts
+    harness:
+      - e2e/fixtures/product-browsing-server.mjs
+    boundary: controlled browser harness; not deployed litemall
+current_gaps:
+  - no dedicated executable test for specification switching and zero-stock UI state
+  - related goods are displayed but not clicked into a new detail page
+  - related endpoint has no dedicated executable assertion for required id
+  - backend-api command is not implemented
