@@ -1,5 +1,9 @@
 # litemall
 
+## AI Native Testing workshop
+
+本课程使用 `WS_2026Aug` 分支。环境准备和分层测试命令见 [WS_2026Aug_SETUP.md](WS_2026Aug_SETUP.md)。
+
 又一个小商场系统。
 
 litemall = Spring Boot后端 + Vue管理员前端 + 微信小程序用户前端 + Vue用户移动端
