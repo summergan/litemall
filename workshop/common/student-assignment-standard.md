@@ -15,6 +15,8 @@
 - `Meets expectations / Needs revision / Invalid`：描述提交物的质量。
 - 真实、完整、可复核的 `BLOCKED` 可以达到作业要求；复制日志、虚构命令或伪造结果属于 `Invalid`。
 
+`Ready / Revise / Blocked`、`Approved / Revise / Blocked` 与 `VALID RED / REVISE / BLOCKED` 是设计、计划或执行阶段的 Gate，不替代最终作业评分。
+
 ## 提交目录
 
 所有小组产物放在：

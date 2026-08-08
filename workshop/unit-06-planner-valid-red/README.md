@@ -22,6 +22,7 @@ cp workshop/unit-06-planner-valid-red/templates/*.md \
 ```bash
 ./Tests/scripts/run-layered-tests.sh browse-backend-ut \
   > "workshop-submissions/unit-06/$TEAM_ID/artifacts/baseline-green.log" 2>&1
+printf '%s\n' "$?" > "workshop-submissions/unit-06/$TEAM_ID/artifacts/baseline-green.exit-status.txt"
 ```
 
 基线不是绿色时停止修改，保留日志并提交 `BLOCKED`。
@@ -77,6 +78,7 @@ workshop-submissions/unit-06/<team-id>/
 ├── red-evidence.md
 └── artifacts/
     ├── baseline-green.log
+    ├── baseline-green.exit-status.txt
     ├── valid-red.log
     ├── valid-red.exit-status.txt
     └── test-delta.patch

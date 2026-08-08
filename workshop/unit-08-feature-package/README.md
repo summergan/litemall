@@ -25,6 +25,7 @@ cp workshop/unit-08-feature-package/templates/* \
 ./Tests/scripts/run-layered-tests.sh preflight
 ./Tests/scripts/run-layered-tests.sh browse-backend-ut \
   > "workshop-submissions/unit-08/$TEAM_ID/artifacts/00-baseline-green.log" 2>&1
+printf '%s\n' "$?" > "workshop-submissions/unit-08/$TEAM_ID/artifacts/00-baseline-green.exit-status.txt"
 ```
 
 基线不绿时停止修改并提交 `BLOCKED`。
@@ -92,6 +93,7 @@ workshop-submissions/unit-08/<team-id>/
 ├── review.md
 └── artifacts/
     ├── 00-baseline-green.log
+    ├── 00-baseline-green.exit-status.txt
     ├── 01-target-red.log
     ├── 01-target-red.exit-status.txt
     ├── 02-target-green.log

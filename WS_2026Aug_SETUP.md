@@ -52,6 +52,8 @@ git branch --show-current
 git rev-parse HEAD
 ```
 
+完成上面的推荐方式后，当前分支应为 `workshop/<team-name>`；它以 `WS_2026Aug` 为基线。提交作业时记录这里输出的 commit。
+
 ## 3. 首次预检
 
 从仓库根目录运行：

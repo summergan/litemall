@@ -2,7 +2,9 @@
 
 - Reviewer：
 - 被 Review 的选择：`A / B / C / D`
-- 结论：`Ready / Revise / Blocked`
+- 设计 Gate：`Ready / Revise / Blocked`
+
+> 这是设计阶段 Gate，不是最终作业评分；最终评分口径见 `workshop/common/student-assignment-standard.md`。
 
 - [ ] 只采用一种测试设计方法。
 - [ ] 每个条件都能追溯到规则或显式 open question。

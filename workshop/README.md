@@ -4,7 +4,7 @@
 
 ## 从这里开始
 
-1. 在仓库根目录确认当前分支：`git branch --show-current`，结果应为 `WS_2026Aug`。
+1. 在仓库根目录确认当前基线：`git branch --show-current` 可以是 `WS_2026Aug`，也可以是从它创建的 `workshop/<team-name>` 练习分支；记录 `git rev-parse HEAD` 的结果。
 2. 运行 `./Tests/scripts/run-layered-tests.sh preflight`。
 3. 打开下表对应单元的 `README.md`，按其中的命令创建个人或小组交付目录。
 4. 只提交任务要求的文件；`PASS / FAIL / BLOCKED` 都必须来自本人或本组的真实过程。

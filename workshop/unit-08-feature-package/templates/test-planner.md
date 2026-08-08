@@ -8,4 +8,4 @@
 - Red command：
 - Green/regression commands：
 - Adjacent layers skipped and reason：
-- Review decision：`Approved / Revise / Blocked`
+- Planner Gate：`Approved / Revise / Blocked`

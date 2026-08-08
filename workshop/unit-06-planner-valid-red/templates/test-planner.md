@@ -8,4 +8,4 @@
 - Expected Red assertion：
 - Adjacent layers skipped and reason：
 - Stop rule：
-- Review decision：`Approved / Revise / Blocked`
+- Planner Gate：`Approved / Revise / Blocked`
