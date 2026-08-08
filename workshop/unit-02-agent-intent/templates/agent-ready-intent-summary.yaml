@@ -1,0 +1,18 @@
+intent_id: "U2-<team>-<id>"
+selection: "A | B | C | D"
+acceptance_criterion_or_model: ""
+method: "equivalence-partitioning | boundary-value-analysis | decision-table | pairwise"
+basis:
+  source: ""
+  rule: ""
+conditions:
+  - id: "C-01"
+    statement: ""
+    input: ""
+    expected: ""
+    rationale: ""
+boundary:
+  covered: []
+  not_covered: []
+open_questions: []
+status: "draft | reviewed | blocked"
