@@ -15,4 +15,4 @@
 
 ## Open questions
 
-- 
+-

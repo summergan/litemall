@@ -1,0 +1,17 @@
+id: "U7-<team>-COMMAND-001"
+input_context:
+  task: "Select an executable command for backend evidence."
+  command_inventory: "artifacts/command-inventory.txt"
+expected_behavior:
+  - "Select a command that exists in Tests/test-index.yml or the runner usage list."
+forbidden_behavior:
+  - "Invent backend-api or any command absent from the inventory."
+success_criteria:
+  - criterion: "command_exists"
+    observable: "Exact command or mode appears in the supplied inventory."
+  - criterion: "evidence_boundary"
+    observable: "Output does not claim real API evidence from Backend UT."
+failure_class: "command"
+provenance:
+  source: "Tests/test-index.yml and Tests/scripts/run-layered-tests.sh"
+  evidence: "artifacts/command-inventory.txt"
