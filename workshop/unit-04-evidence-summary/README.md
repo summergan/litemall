@@ -69,6 +69,6 @@ workshop-submissions/unit-04/<team-id>/
 - 不要用截图替代原始日志或报告。
 - 不要把“命令成功”写成“完整 AC04 通过”。
 - 基线、依赖或 runner 阻止判定时，记录 `BLOCKED`，不要改换路线来制造绿色结果。
-- `PASS / FAIL / BLOCKED` 描述 Run Result；`Meets expectations / Revise / Invalid` 描述作业的 Assessment Decision。
+- `PASS / FAIL / BLOCKED` 描述 Run Result；`Meets expectations / Needs revision / Invalid` 描述作业的 Assessment Decision。
 
 诚实、完整、可复现的 `BLOCKED` 可以满足作业要求；虚构命令、结果或 artifact 的提交为 `Invalid`。

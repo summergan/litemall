@@ -35,4 +35,4 @@
 
 - [ ] Meets expectations
 - [ ] Needs revision
-- [ ] Blocked
+- [ ] Invalid
