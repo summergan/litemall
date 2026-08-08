@@ -87,15 +87,18 @@ git rev-parse HEAD
 - 原始日志或 Playwright artifact 路径
 - 本次证据证明了什么、没有证明什么
 
-## 5. Unit 4｜证据工程课堂作业
+## 5. 学生实践任务
 
-课堂小组作业使用 `workshop/unit-04-evidence-summary/`。它把同一份 `Evidence Summary` 拆成三个连续产物：
+Unit 2、4、6、7、8 的任务、输入、模板、命令、交付目录、完成标准和停止条件统一收录在 [`workshop/README.md`](workshop/README.md)。Unit 1、3、5 没有课堂作业。
 
-1. `Evidence Plan`：Goal、Primary Layer、Case ID、工作目录、命令和边界。
-2. `Run Record`：Actual Result、exit status、artifact 和 Observed facts。
-3. `Evidence Decision`：Proves、Does not prove、residual risk、Next action、owner 和 Gate decision。
+从仓库根目录先运行：
 
-从仓库根目录进入作业目录，阅读 [README](workshop/unit-04-evidence-summary/README.md)，复制模板到本组交付目录后再运行测试。交叉 Review 使用该目录中的 `reproducer-review.md`，依次核对 Plan、Run、Decision 是否构成同一条证据链。
+```bash
+./Tests/scripts/run-layered-tests.sh preflight
+open workshop/README.md
+```
+
+每份任务都明确回答：学生要处理哪个对象、读取什么输入、执行什么动作、提交哪些文件、怎样算完成，以及何时应提交 `BLOCKED`。
 
 ## 6. 单元任务代码入口
 
