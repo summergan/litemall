@@ -87,7 +87,17 @@ git rev-parse HEAD
 - 原始日志或 Playwright artifact 路径
 - 本次证据证明了什么、没有证明什么
 
-## 5. 单元任务代码入口
+## 5. Unit 4｜证据工程课堂作业
+
+课堂小组作业使用 `workshop/unit-04-evidence-summary/`。它把同一份 `Evidence Summary` 拆成三个连续产物：
+
+1. `Evidence Plan`：Goal、Primary Layer、Case ID、工作目录、命令和边界。
+2. `Run Record`：Actual Result、exit status、artifact 和 Observed facts。
+3. `Evidence Decision`：Proves、Does not prove、residual risk、Next action、owner 和 Gate decision。
+
+从仓库根目录进入作业目录，阅读 [README](workshop/unit-04-evidence-summary/README.md)，复制模板到本组交付目录后再运行测试。交叉 Review 使用该目录中的 `reproducer-review.md`，依次核对 Plan、Run、Decision 是否构成同一条证据链。
+
+## 6. 单元任务代码入口
 
 | 单元 | 代码入口 |
 | --- | --- |
@@ -97,7 +107,7 @@ git rev-parse HEAD
 | Unit 7 | `Tests/test-index.yml`；`Tests/contracts/`；各层测试源文件 |
 | Unit 8 | `Tests/backend/`、`Tests/frontend/`、`Tests/e2e/` |
 
-## 6. 作业修改规范
+## 7. 作业修改规范
 
 ```bash
 git status --short
@@ -113,7 +123,7 @@ git commit -m "test: <describe your workshop change>"
 - 本机 IDE 配置
 - 其他小组的日志或答案
 
-## 7. 常见问题
+## 8. 常见问题
 
 ### 依赖下载失败
 

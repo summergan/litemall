@@ -2,7 +2,7 @@
 
 ## AI Native Testing workshop
 
-本课程使用 `WS_2026Aug` 分支。环境准备和分层测试命令见 [WS_2026Aug_SETUP.md](WS_2026Aug_SETUP.md)。
+本课程使用 `WS_2026Aug` 分支。环境准备和分层测试命令见 [WS_2026Aug_SETUP.md](WS_2026Aug_SETUP.md)；Unit 4 课堂作业见 [workshop/unit-04-evidence-summary/README.md](workshop/unit-04-evidence-summary/README.md)。
 
 又一个小商场系统。
 
