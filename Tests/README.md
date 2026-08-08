@@ -7,7 +7,7 @@
 ## 获取代码
 
 ```bash
-git clone --branch workshop/product-discovery --single-branch \
+git clone --branch WS_2026Aug --single-branch \
   https://github.com/summergan/litemall.git
 cd litemall
 ./Tests/scripts/run-layered-tests.sh preflight

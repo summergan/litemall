@@ -33,14 +33,16 @@ npm --version
 git clone --branch WS_2026Aug --single-branch \
   https://github.com/summergan/litemall.git
 cd litemall
-git switch -c workshop/<team-name>
+TEAM_NAME="team-a" # 替换成你们的小组名
+git switch -c "workshop/$TEAM_NAME"
 ```
 
 如果已经有 clone：
 
 ```bash
 git fetch origin WS_2026Aug
-git switch -c workshop/<team-name> origin/WS_2026Aug
+TEAM_NAME="team-a" # 替换成你们的小组名
+git switch -c "workshop/$TEAM_NAME" origin/WS_2026Aug
 ```
 
 检查当前分支和基线：

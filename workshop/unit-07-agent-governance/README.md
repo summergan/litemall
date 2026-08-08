@@ -19,7 +19,7 @@ TEAM_ID="team-a" # 换成你们的小组名
 mkdir -p "workshop-submissions/unit-07/$TEAM_ID/artifacts"
 cp workshop/unit-07-agent-governance/templates/* \
   "workshop-submissions/unit-07/$TEAM_ID/"
-rg -n "browse-|Usage:" Tests/test-index.yml Tests/scripts/run-layered-tests.sh \
+grep -nE "browse-|Usage:" Tests/test-index.yml Tests/scripts/run-layered-tests.sh \
   > "workshop-submissions/unit-07/$TEAM_ID/artifacts/command-inventory.txt"
 ```
 
