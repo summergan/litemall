@@ -1,0 +1,13 @@
+spec_id: "U8-<team>-RELATED-EXCLUDE-SELF"
+basis:
+  source: "workshop/unit-08-feature-package/inputs/target-change.md"
+  rule: "Related goods must exclude the current goodsId."
+condition:
+  current_goods_id: 100
+  service_result_ids: [100, 101]
+oracle:
+  expected_response_ids: [101]
+  observable: "Backend UT response data.list"
+boundary:
+  covered: ["controlled controller behavior"]
+  not_covered: ["real database", "HTTP", "UI", "ranking"]

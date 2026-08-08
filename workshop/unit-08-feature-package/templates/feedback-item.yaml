@@ -1,0 +1,8 @@
+id: "U8-<team>-feedback-001"
+type: "defect | risk | improvement | question"
+trigger: ""
+expected: ""
+evidence: ""
+owner: ""
+gate_readiness: "report-only | non-blocking | blocking-candidate | not-ready"
+next_action: ""
