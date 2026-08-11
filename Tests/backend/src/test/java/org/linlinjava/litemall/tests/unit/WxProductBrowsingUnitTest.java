@@ -214,7 +214,7 @@ public class WxProductBrowsingUnitTest {
         LitemallGoods related = goods(101, "手冲壶", 20);
         when(goodsService.findById(404)).thenReturn(null);
         when(goodsService.findById(100)).thenReturn(goods);
-        when(goodsService.queryByCategory(20, 0, 6)).thenReturn(Collections.singletonList(related));
+        when(goodsService.queryByCategory(20, 0, 6)).thenReturn(Arrays.asList(goods, related));
 
         Map<String, Object> missingResponse = responseMap(goodsController.related(404));
         Map<String, Object> relatedResponse = responseMap(goodsController.related(100));
