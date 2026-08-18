@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test Execution Report · Unpaid Order Timeout</title>
+  <style>
+    :root { --ink:#17202b; --muted:#66727d; --line:#dce4ea; --blue:#3b82f6; --green:#159570; --orange:#f26b3a; --paper:#f7f9fb; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:#e9eef2; color:var(--ink); font-family:Inter, -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif; }
+    .report { width:1440px; margin:0 auto; padding:32px 0 64px; }
+    .page { width:1280px; min-height:720px; margin:0 auto 28px; padding:58px 68px; background:#fff; position:relative; overflow:hidden; box-shadow:0 8px 26px #192a3a18; }
+    .page:before { content:""; position:absolute; left:0; top:0; width:12px; height:100%; background:var(--orange); }
+    .eyebrow { color:var(--orange); font-size:15px; font-weight:800; letter-spacing:.12em; text-transform:uppercase; }
+    h1 { margin:26px 0 14px; font-size:56px; line-height:1.04; letter-spacing:-.04em; }
+    h2 { margin:14px 0 28px; font-size:38px; line-height:1.12; letter-spacing:-.03em; }
+    h3 { margin:0 0 10px; font-size:21px; }
+    p { margin:0; color:var(--muted); font-size:19px; line-height:1.55; }
+    .rule { height:4px; width:100%; background:linear-gradient(90deg,var(--blue) 0 34%,var(--orange) 34% 67%,var(--green) 67%); margin:28px 0 36px; }
+    .hero { display:grid; grid-template-columns:1.05fr .95fr; gap:44px; align-items:center; min-height:570px; }
+    .hero-number { font-size:118px; line-height:.9; font-weight:850; letter-spacing:-.08em; color:var(--ink); }
+    .hero-number span { color:var(--orange); }
+    .hero-note { margin-top:24px; max-width:550px; }
+    .signal { background:#111923; color:#fff; padding:28px 30px; border-radius:4px; font-size:25px; line-height:1.45; }
+    .signal b { color:#ff8a5f; }
+    .metrics { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:36px; }
+    .metric { padding:18px 20px; background:var(--paper); border-top:4px solid var(--blue); }
+    .metric:nth-child(2){border-color:var(--green)} .metric:nth-child(3){border-color:var(--orange)} .metric:nth-child(4){border-color:#9aa7b3}
+    .metric strong { display:block; font-size:31px; line-height:1.1; }
+    .metric small { color:var(--muted); font-size:15px; }
+    table { width:100%; border-collapse:collapse; font-size:18px; }
+    th { text-align:left; padding:14px 16px; background:#17202b; color:#fff; font-weight:700; }
+    td { padding:14px 16px; border-bottom:1px solid var(--line); vertical-align:top; }
+    tr:last-child td { border-bottom:0; }
+    .pass { color:var(--green); font-weight:800; } .partial { color:#d45b32; font-weight:800; }
+    .badge { display:inline-block; padding:4px 10px; border-radius:999px; background:#e5f6f0; color:var(--green); font-size:14px; font-weight:800; }
+    .split { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+    .evidence { padding:24px; border:1px solid var(--line); min-height:240px; }
+    .evidence.blue { border-top:6px solid var(--blue); } .evidence.orange { border-top:6px solid var(--orange); }
+    .evidence.green { border-top:6px solid var(--green); }
+    .evidence ul { margin:12px 0 0; padding-left:22px; color:var(--muted); font-size:18px; line-height:1.75; }
+    .footer { position:absolute; bottom:20px; left:68px; right:68px; color:#8996a1; font-size:13px; display:flex; justify-content:space-between; }
+    code { font-family:ui-monospace, SFMono-Regular, Menlo, monospace; font-size:.9em; color:#36516d; }
+  </style>
+</head>
+<body>
+  <main class="report">
+    <section class="page" id="summary">
+      <div class="eyebrow">Test Execution Report · MALL-ORD-TIMEOUT-001</div>
+      <div class="hero">
+        <div>
+          <div class="hero-number">101 <span>→</span> 103</div>
+          <h1>超时未支付订单<br>自动关闭并释放资源</h1>
+          <p class="hero-note">本次验证关注一条不可被拆开的业务事实：订单关闭、库存回补、优惠券释放必须处在同一个可恢复的事务边界内。</p>
+        </div>
+        <div>
+          <div class="signal"><b>结论</b><br>已实现并通过完整分层测试。重复执行不会再次补偿，库存或优惠券失败会回滚。</div>
+          <div class="metrics">
+            <div class="metric"><strong>7</strong><small>新增 Backend UT</small></div>
+            <div class="metric"><strong>3</strong><small>新增 Backend IT</small></div>
+            <div class="metric"><strong>4/4</strong><small>E2E 回归</small></div>
+            <div class="metric"><strong>0</strong><small>全流程失败</small></div>
+          </div>
+        </div>
+      </div>
+      <div class="footer"><span>Test Agent Workflow · evidence first</span><span>2026-08-18</span></div>
+    </section>
+
+    <section class="page" id="layers">
+      <div class="eyebrow">Layered Evidence</div>
+      <h2>新增测试与既有回归分开统计，避免把回归误读为影响范围</h2>
+      <div class="rule"></div>
+      <table>
+        <thead><tr><th>测试层</th><th>新增测试</th><th>既有回归</th><th>结果</th><th>关键证据</th></tr></thead>
+        <tbody>
+          <tr><td>Backend UT</td><td><span class="badge">新增 7</span></td><td>既有回归通过</td><td class="pass">PASS</td><td>状态门禁、补偿失败、Task 路由</td></tr>
+          <tr><td>Backend IT</td><td><span class="badge">新增 3</span></td><td>既有回归 5</td><td class="pass">PASS</td><td>真实 MySQL 事务、库存/优惠券回滚、重复执行</td></tr>
+          <tr><td>Contract</td><td>新增 0</td><td>既有回归通过</td><td class="pass">PASS</td><td>接口契约未变化</td></tr>
+          <tr><td>Frontend UT</td><td>新增 0</td><td>4/4</td><td class="pass">PASS</td><td>本次为后端定时任务变更</td></tr>
+          <tr><td>Frontend IT</td><td>新增 0</td><td>15/15</td><td class="pass">PASS</td><td>订单 API 回归</td></tr>
+          <tr><td>E2E</td><td>新增 0</td><td>4/4</td><td class="pass">PASS</td><td>取消订单释放资源主路径</td></tr>
+        </tbody>
+      </table>
+      <div class="footer"><span>Fresh verification: <code>./Tests/scripts/run-layered-tests.sh all</code></span><span>Evidence 01</span></div>
+    </section>
+
+    <section class="page" id="acceptance">
+      <div class="eyebrow">Acceptance Evidence</div>
+      <h2>核心 AC 已闭环，剩余风险被明确保留而不是被绿色结果掩盖</h2>
+      <div class="rule"></div>
+      <div class="split">
+        <div class="evidence green"><h3>已证明</h3><ul>
+          <li>订单从 <code>101</code> 变为 <code>103</code></li>
+          <li>商品库存回补，优惠券回到可用状态</li>
+          <li>库存或优惠券失败时事务回滚</li>
+          <li>第二次执行不重复增加库存、不重复释放优惠券</li>
+          <li>Task 将订单号路由到 Spring 管理的补偿服务</li>
+        </ul></div>
+        <div class="evidence orange"><h3>仍需补强</h3><ul>
+          <li class="partial">真实多线程并发 IT：当前仅验证乐观锁失败安全跳过</li>
+          <li class="partial">结构化日志断言：当前仅有代码与日志行为审查</li>
+          <li>这两项作为 P1 follow-up，不从当前绿色结果外推</li>
+        </ul></div>
+      </div>
+      <div class="signal" style="margin-top:30px;font-size:20px"><b>Release decision</b>　原子补偿实现可以进入评审；并发和结构化日志作为后续质量门禁。</div>
+      <div class="footer"><span>Source: test-case-design + test-strategy + execution evidence</span><span>Evidence 02</span></div>
+    </section>
+  </main>
+</body>
+</html>
