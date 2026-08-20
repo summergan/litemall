@@ -1,0 +1,135 @@
+version: 2
+project: test-agent-workflow
+entry_skill: test-agent-orchestrator
+
+agents:
+  test-engineer:
+    path: skills/test-agent-workflow/agents/test-engineer.md
+    role: case design, strategy analysis, and test evidence review
+    composes_with: [test-case-design, test-case-quality-review, test-strategy, test-execution]
+
+top_level_entrypoints:
+  test-agent-workflow:
+    path: skills/test-agent-workflow/SKILL.md
+    routes_to: test-agent-orchestrator
+  test-agent-orchestrator:
+    path: skills/test-agent-orchestrator/SKILL.md
+    routes_to: test-agent-orchestrator
+  test-case-design:
+    path: skills/test-agent-workflow/test-case-design/SKILL.md
+    routes_to: test-case-design
+  test-strategy:
+    path: skills/test-strategy/SKILL.md
+    routes_to: test-strategy
+  test-execution:
+    path: skills/test-execution/SKILL.md
+    routes_to: test-execution
+
+loading_policy:
+  mode: lazy
+  rules:
+    - Load requirement stages only when approved Story and AC artifacts are absent.
+    - Existing-case discovery is a Test Case Design reference, not a Skill.
+    - Test Case Design loads only techniques that shape the Case set.
+    - Test Strategy is the sole owner of layer selection and loads the layer capability reference on demand.
+    - Test Execution loads only layer Skills named by the READY Execution Plan.
+    - Runtime references load only when the selected layer requires them.
+    - Governance Skills run only when their explicit trigger applies.
+    - Do not call external method or level routers.
+
+skills:
+  test-agent-orchestrator:
+    path: skills/test-agent-workflow/00-test-agent-orchestrator/SKILL.md
+    level: control-plane
+    owns: [workflow routing, gates, final test report, residual risk]
+  user-story-intake:
+    path: skills/test-agent-workflow/01-user-story-intake/SKILL.md
+    level: requirement
+    owns: [story card, scope, assumptions, open questions]
+  acceptance-criteria:
+    path: skills/test-agent-workflow/02-acceptance-criteria/SKILL.md
+    level: acceptance
+    owns: [acceptance criteria, business rules, observable oracles]
+  test-case-design:
+    path: skills/test-agent-workflow/test-case-design/SKILL.md
+    level: design
+    owns: [test basis, obligations, existing-case decisions, techniques, layer-neutral cases]
+    references:
+      - skills/test-agent-workflow/test-case-design/references/existing-case-discovery.md
+      - skills/test-agent-workflow/test-case-design/references/test-design-techniques.md
+      - skills/test-agent-workflow/test-case-design/references/cause-effect-graph.md
+  test-case-quality-review:
+    path: skills/test-agent-workflow/04-test-case-quality-review/SKILL.md
+    level: design-gate
+    owns: [traceability, completeness, oracle quality, case approval]
+  test-strategy:
+    path: skills/test-agent-workflow/05-test-strategy/SKILL.md
+    level: strategy
+    owns: [case selection, evidence layers, actions, targets, commands, runtimes, order, gates]
+    references:
+      - skills/test-agent-workflow/05-test-strategy/references/layer-capabilities.md
+  test-execution:
+    path: skills/test-agent-workflow/06-test-execution/SKILL.md
+    level: execution
+    owns: [selected-layer implementation, CLI execution, evidence]
+    child_skills: [backend-ut, frontend-ut, contract-test, frontend-it, backend-it-testcontainers, e2e-smoke]
+  backend-ut:
+    path: skills/test-agent-workflow/06-test-execution/01-backend-ut/SKILL.md
+    parent: test-execution
+    selected_by: test-strategy
+  frontend-ut:
+    path: skills/test-agent-workflow/06-test-execution/02-frontend-ut/SKILL.md
+    parent: test-execution
+    selected_by: test-strategy
+  contract-test:
+    path: skills/test-agent-workflow/06-test-execution/03-contract-test/SKILL.md
+    parent: test-execution
+    selected_by: test-strategy
+  frontend-it:
+    path: skills/test-agent-workflow/06-test-execution/04-frontend-it/SKILL.md
+    parent: test-execution
+    selected_by: test-strategy
+  backend-it-testcontainers:
+    path: skills/test-agent-workflow/06-test-execution/05-backend-it-testcontainers/SKILL.md
+    parent: test-execution
+    selected_by: test-strategy
+    references:
+      - skills/test-agent-workflow/06-test-execution/05-backend-it-testcontainers/references/colima-runtime.md
+  e2e-smoke:
+    path: skills/test-agent-workflow/06-test-execution/06-e2e-smoke/SKILL.md
+    parent: test-execution
+    selected_by: test-strategy
+  failure-repair-loop:
+    path: skills/test-agent-workflow/07-failure-repair-loop/SKILL.md
+    level: repair
+  quality-kb-builder:
+    path: skills/test-agent-workflow/08-quality-kb-builder/SKILL.md
+    level: governance
+    activation: when reusable evidence or the KB is stale
+  skill-benchmark:
+    path: skills/test-agent-workflow/09-skill-benchmark/SKILL.md
+    level: governance
+    activation: when a Skill, reference, rubric, or benchmark changes
+  skill-self-optimization:
+    path: skills/test-agent-workflow/10-skill-self-optimization/SKILL.md
+    level: governance
+    activation: explicit optimization experiment only
+  ci-quality-flow:
+    path: skills/test-agent-workflow/11-ci-quality-flow/SKILL.md
+    level: governance
+    activation: delivery or release gate planning
+
+activation:
+  requirement_to_evidence:
+    first: test-agent-orchestrator
+    then: [user-story-intake when needed, acceptance-criteria when needed, test-case-design, test-case-quality-review, test-strategy, test-execution, failure-repair-loop when red]
+    final: final test report from test-agent-orchestrator
+  case_design:
+    first: test-case-design
+    then: [test-case-quality-review]
+  strategy_and_execution:
+    first: test-strategy
+    requires: passing design review
+    then: [test-execution, failure-repair-loop when red]
+  governance:
+    conditional: [ci-quality-flow, quality-kb-builder, skill-benchmark, skill-self-optimization]
