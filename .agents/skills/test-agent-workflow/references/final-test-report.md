@@ -43,17 +43,20 @@ When the final report is rendered as HTML, use a review-first structure:
    sections that are closed by default. Do not add an `open` attribute. Each
    closed summary must show the section name plus a short summary of the
    content inside it.
-3. Inside the expanded layer section, show each layer's command, new tests,
+3. The `01` closed summary must show the layer count, total new-test count,
+   existing-regression status, and current-run status. Do not use a generic
+   “click to view details” sentence as the summary.
+4. Inside the expanded layer section, show each layer's command, new tests,
    existing regression, last evidence result, current run status, and coverage
    judgment.
-4. The `02` summary should expose the number of Cases and how many are
+5. The `02` summary should expose the number of Cases and how many are
    proven versus partial, while the expanded content shows the Test Strategy
    to Test Case mapping before the detailed Case list.
-5. The `03` summary should expose the Case count and result split. Render each
+6. The `03` summary should expose the Case count and result split. Render each
    Case as a separate disclosure section, also closed by default.
    The expanded content must include purpose, strategy layer, preconditions,
    steps, oracle, evidence, and unresolved gap.
-6. The `04` summary should expose the number of P1 risks and environment
+7. The `04` summary should expose the number of P1 risks and environment
    verification items. Keep the review decision inside the expanded section,
    while the first visible status line remains outside all disclosures.
 
