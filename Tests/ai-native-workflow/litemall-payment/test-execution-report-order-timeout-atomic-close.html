@@ -17,6 +17,7 @@
     .notice{padding:13px 16px;background:#fff8ed;border-left:4px solid var(--orange);margin:16px 0;color:#71451d}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{border:1px solid var(--line);padding:15px;background:#fafbfc}.card strong{font-size:23px;display:block}.card p{margin:4px 0;color:var(--muted)}
     .case-list{display:grid;gap:9px}.case{border:1px solid var(--line);background:#fcfdfe}.case summary{cursor:pointer;list-style:none;padding:13px 15px;display:grid;grid-template-columns:260px 90px 130px 1fr;gap:12px;align-items:center}.case summary::-webkit-details-marker{display:none}.case summary:before{content:'＋';color:var(--blue);font-weight:800}.case[open] summary:before{content:'－'}.case summary:hover{background:#f4f7fb}.case-body{border-top:1px solid var(--line);padding:16px 18px 18px 45px;background:#fff}.case-body dl{display:grid;grid-template-columns:130px 1fr;gap:7px 16px;margin:0}.case-body dt{font-weight:800;color:#4d5b68}.case-body dd{margin:0}.case-body ul{margin:5px 0 0;padding-left:20px}.case-body .gap{margin-top:12px;padding:10px 12px;background:#fff4e9;border-left:3px solid var(--orange)}
     .layer-report{border:1px solid var(--line);background:#fcfdfe}.layer-report summary{cursor:pointer;list-style:none;padding:14px 16px;display:flex;align-items:center;gap:14px}.layer-report summary::-webkit-details-marker{display:none}.layer-report summary:before{content:'＋';color:var(--blue);font-size:18px;font-weight:800}.layer-report[open] summary:before{content:'－'}.layer-report summary:hover{background:#f4f7fb}.layer-report-body{border-top:1px solid var(--line);padding:16px;background:#fff}
+    .section-report{border:1px solid var(--line);background:#fcfdfe}.section-report summary{cursor:pointer;list-style:none;padding:14px 16px;display:flex;align-items:baseline;gap:14px}.section-report summary::-webkit-details-marker{display:none}.section-report summary:before{content:'＋';color:var(--blue);font-size:18px;font-weight:800}.section-report[open] summary:before{content:'－'}.section-report summary:hover{background:#f4f7fb}.section-report-body{border-top:1px solid var(--line);padding:16px;background:#fff}
     .mapping td:first-child{white-space:nowrap}.trace{font-size:13px}.legend{display:flex;gap:14px;flex-wrap:wrap;margin:12px 0;color:var(--muted);font-size:13px}.legend span:before{content:'';display:inline-block;width:9px;height:9px;border-radius:50%;background:var(--green);margin-right:5px}.legend .v:before{background:var(--orange)}.legend .b:before{background:var(--red)}
     .footer{margin-top:18px;font-size:12px;color:#8996a1;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}.cmd{display:block;background:#101820;color:#e9f0f5;padding:11px 13px;border-radius:3px;margin:6px 0;font:13px ui-monospace,SFMono-Regular,Menlo,monospace;overflow:auto}
     @media(max-width:900px){.wrap{padding:14px}.grid{grid-template-columns:1fr}.case summary{grid-template-columns:1fr;gap:3px}.case-body{padding-left:18px}.case-body dl{grid-template-columns:1fr}.top,section{padding:18px}.status{align-items:flex-start;flex-direction:column}}
@@ -53,6 +54,9 @@
   </section>
 
   <section id="strategy">
+    <details class="section-report">
+      <summary><span class="index">02 · STRATEGY TRACEABILITY</span><b>测试策略与 Case 对应关系</b><span class="small">8 个 Case · 6 个已证明 · 2 个 partial · 展开查看层级与证据目标</span></summary>
+      <div class="section-report-body">
     <div class="section-head"><div><span class="index">02 · STRATEGY TRACEABILITY</span><h2>测试策略与 Case 对应关系</h2></div><span class="small">Strategy 决定层级；Case 保持分层无关</span></div>
     <table class="mapping">
       <thead><tr><th>Case ID</th><th>AC</th><th>策略选择的层级</th><th>策略中的证据目标</th><th>Case 状态</th><th>Review 结论</th></tr></thead>
@@ -67,9 +71,14 @@
         <tr><td><code>TEST-TIMEOUT-AC08-001</code></td><td>AC01</td><td>Backend UT</td><td>Task 将订单号委托给补偿服务</td><td><span class="pill pass">passed</span></td><td>已有证据</td></tr>
       </tbody>
     </table>
+      </div>
+    </details>
   </section>
 
   <section id="cases">
+    <details class="section-report">
+      <summary><span class="index">03 · CASE REVIEW</span><b>测试 Case 列表</b><span class="small">8 个 Case · 6 PASS · 2 PARTIAL · 点击展开具体步骤、Oracle 和 Evidence</span></summary>
+      <div class="section-report-body">
     <div class="section-head"><div><span class="index">03 · CASE REVIEW</span><h2>测试 Case 列表</h2></div><span class="small">点击任一 Case 展开细节</span></div>
     <div class="case-list">
       <details class="case"><summary><code>TEST-TIMEOUT-AC01-001</code><span>AC01</span><span class="pill pass">PASS</span><span>正常超时关闭</span></summary><div class="case-body"><dl><dt>Purpose</dt><dd>验证未支付订单可以完成关闭，并释放全部资源。</dd><dt>Strategy</dt><dd>Backend UT 验证编排；Backend IT 验证真实数据库状态。</dd><dt>Precondition</dt><dd>订单状态 101；库存已扣减 2；优惠券处于已使用状态。</dd><dt>Steps</dt><dd>执行超时补偿服务，查询订单、库存和优惠券记录。</dd><dt>Oracle</dt><dd>订单变为 103；库存 5→7；优惠券恢复可用。</dd><dt>Evidence</dt><dd>OrderTimeoutCompensationServiceUnitTest；OrderTimeoutConsistencyIT。</dd></dl></div></details>
@@ -81,9 +90,14 @@
       <details class="case"><summary><code>TEST-TIMEOUT-AC07-001</code><span>AC07</span><span class="pill verify">PARTIAL</span><span>审计日志上下文</span></summary><div class="case-body"><dl><dt>Purpose</dt><dd>验证成功、跳过、失败日志都包含订单上下文和结果。</dd><dt>Strategy</dt><dd>Code / Log Review；当前未配置结构化日志采集断言。</dd><dt>Precondition</dt><dd>分别触发成功、终态跳过、依赖失败。</dd><dt>Steps</dt><dd>采集日志并按 orderId、result、failureCause 查询。</dd><dt>Oracle</dt><dd>三种路径的字段完整且 error level 正确。</dd><dt>Evidence</dt><dd>当前只有代码审查和人工日志观察。</dd><div class="gap"><b>Open gap：</b>接入 appender 或结构化 sink，并加入自动断言后再标为 PASS。</div></dl></div></details>
       <details class="case"><summary><code>TEST-TIMEOUT-AC08-001</code><span>AC01</span><span class="pill pass">PASS</span><span>Task 委托路由</span></summary><div class="case-body"><dl><dt>Purpose</dt><dd>验证 scheduler Task 不自行持有事务，而是将订单号委托给 Spring 管理的补偿服务。</dd><dt>Strategy</dt><dd>Backend UT；验证 delegation interaction。</dd><dt>Precondition</dt><dd>Task 收到订单号。</dd><dt>Steps</dt><dd>运行 Task，检查补偿服务是否收到同一订单号。</dd><dt>Oracle</dt><dd>委托调用发生且参数正确。</dd><dt>Evidence</dt><dd>OrderUnpaidTaskUnitTest。</dd></dl></div></details>
     </div>
+      </div>
+    </details>
   </section>
 
   <section id="gaps">
+    <details class="section-report">
+      <summary><span class="index">04 · REVIEW DECISION</span><b>需要确认的项目</b><span class="small">2 个 P1 风险 · 1 个环境验证项 · 关闭后才可变为 PASS</span></summary>
+      <div class="section-report-body">
     <div class="section-head"><div><span class="index">04 · REVIEW DECISION</span><h2>需要确认的项目</h2></div><span class="small">关闭后才可从 NEEDS_VERIFY 变为 PASS</span></div>
     <table>
       <thead><tr><th>优先级</th><th>问题</th><th>当前状态</th><th>关闭动作</th><th>关闭标准</th></tr></thead>
@@ -94,6 +108,8 @@
       </tbody>
     </table>
     <div class="notice"><b>Review decision：</b>当前不阻断代码评审，但阻断“无条件测试通过”结论。完成 P1 和完整重跑后，重新评审本报告首页状态。</div>
+      </div>
+    </details>
   </section>
 
   <section id="evidence">

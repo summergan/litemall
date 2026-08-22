@@ -38,20 +38,24 @@ When the final report is rendered as HTML, use a review-first structure:
 
 1. Put the final result on the first visible line:
    `PASS`, `BLOCK`, or `NEEDS_VERIFY`.
-2. Render `01 · LAYER RESULTS` as a native disclosure section that is closed
-   by default. Do not add an `open` attribute. Its closed summary must show
-   the section name and a short hint that the layer execution details can be
-   expanded.
+2. Render `01 · LAYER RESULTS`, `02 · STRATEGY TRACEABILITY`,
+   `03 · CASE REVIEW`, and `04 · REVIEW DECISION` as native disclosure
+   sections that are closed by default. Do not add an `open` attribute. Each
+   closed summary must show the section name plus a short summary of the
+   content inside it.
 3. Inside the expanded layer section, show each layer's command, new tests,
    existing regression, last evidence result, current run status, and coverage
    judgment.
-4. Show the Test Strategy to Test Case mapping before the detailed Case list.
-5. Render each Case as a separate disclosure section, also closed by default.
+4. The `02` summary should expose the number of Cases and how many are
+   proven versus partial, while the expanded content shows the Test Strategy
+   to Test Case mapping before the detailed Case list.
+5. The `03` summary should expose the Case count and result split. Render each
+   Case as a separate disclosure section, also closed by default.
    The expanded content must include purpose, strategy layer, preconditions,
    steps, oracle, evidence, and unresolved gap.
-6. Keep the final review decision and residual-risk table outside the collapsed
-   layer section so the release reviewer can see the decision without opening
-   every detail.
+6. The `04` summary should expose the number of P1 risks and environment
+   verification items. Keep the review decision inside the expanded section,
+   while the first visible status line remains outside all disclosures.
 
 Canonical HTML shape:
 
@@ -61,7 +65,18 @@ Canonical HTML shape:
   <summary>01 · LAYER RESULTS · 分层测试执行结果</summary>
   <!-- layer result table -->
 </details>
-<section id="strategy">Strategy → Case mapping</section>
+<details class="section-report">
+  <summary>02 · STRATEGY TRACEABILITY · 8 cases · 6 proven · 2 partial</summary>
+  <!-- Strategy → Case mapping -->
+</details>
+<details class="section-report">
+  <summary>03 · CASE REVIEW · 8 cases · 6 PASS · 2 PARTIAL</summary>
+  <!-- expandable Case list -->
+</details>
+<details class="section-report">
+  <summary>04 · REVIEW DECISION · 2 P1 risks · 1 environment check</summary>
+  <!-- residual risks and decision -->
+</details>
 <details class="case">
   <summary>case_id · result · purpose</summary>
   <!-- case detail and evidence -->
