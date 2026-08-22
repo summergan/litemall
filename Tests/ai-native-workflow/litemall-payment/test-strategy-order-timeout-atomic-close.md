@@ -28,7 +28,7 @@
 ## Commands
 
 1. `./Tests/scripts/run-layered-tests.sh all`
-2. `ruby AI Native/skills/test-agent-workflow/scripts/validate-workflow.rb`
+2. `ruby .agents/skills/test-agent-workflow/scripts/validate-workflow.rb`
 
 The `all` lane includes scripts, Backend UT, Contract, Frontend UT/IT,
 Backend IT, and E2E. Backend IT uses the Colima Docker socket through

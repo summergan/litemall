@@ -67,26 +67,26 @@ strategy_id: TS-LITEMALL-PAYMENT-001
 execution_profile: release-focused
 decision: READY
 
-| order | execution_id | case_id | test_case_id | layer | layer_skill | action | command |
+| order | execution_id | case_id | test_case_id | layer | layer_reference | action | command |
 | ---: | --- | --- | --- | --- | --- | --- | --- |
-| 1 | EXEC-20260815-001 | MALL-PAY-AC01-001 | MALL-PAY-AC01-BE-UT-001 | backend-ut | backend-ut | run-existing | ./Tests/scripts/run-layered-tests.sh backend-ut |
-| 2 | EXEC-20260815-002 | MALL-PAY-AC02-002 | MALL-PAY-AC02-BE-UT-001 | backend-ut | backend-ut | run-existing | ./Tests/scripts/run-layered-tests.sh backend-ut |
-| 3 | EXEC-20260815-003 | MALL-PAY-AC03-003 | MALL-PAY-AC03-BE-UT-001 | backend-ut | backend-ut | run-existing | ./Tests/scripts/run-layered-tests.sh backend-ut |
-| 4 | EXEC-20260815-004 | MALL-PAY-AC04-004 | MALL-PAY-AC04-CONTRACT-001 | contract | contract-test | run-existing | ./Tests/scripts/run-layered-tests.sh contract |
-| 5 | EXEC-20260815-005 | MALL-PAY-AC05-005 | MALL-PAY-AC05-BE-IT-001 | backend-it | backend-it-testcontainers | run-existing | ./Tests/scripts/run-layered-tests.sh backend-it |
-| 6 | EXEC-20260815-006 | MALL-PAY-AC06-006 | MALL-PAY-AC06-BE-IT-001 | backend-it | backend-it-testcontainers | run-existing | ./Tests/scripts/run-layered-tests.sh backend-it |
-| 7 | EXEC-20260815-007 | MALL-PAY-AC07-007 | MALL-PAY-AC07-FE-IT-001 | frontend-it | frontend-it | run-existing | ./Tests/scripts/run-layered-tests.sh frontend-it |
-| 8 | EXEC-20260815-008 | MALL-PAY-AC08-008 | MALL-PAY-AC08-E2E-001 | e2e | e2e-smoke | run-existing | ./Tests/scripts/run-layered-tests.sh e2e |
-| 9 | EXEC-20260815-009 | MALL-PAY-AC09-009 | MALL-PAY-AC09-BE-UT-001 | backend-ut | backend-ut | create-new | ./Tests/scripts/run-layered-tests.sh backend-ut |
-| 10 | EXEC-20260815-010 | MALL-PAY-AC10-010 | MALL-PAY-AC10-BE-UT-001 | backend-ut | backend-ut | create-new | ./Tests/scripts/run-layered-tests.sh backend-ut |
-| 11 | EXEC-20260815-011 | MALL-PAY-AC11-011 | MALL-PAY-AC11-FE-UT-001 | frontend-ut | frontend-ut | create-new | ./Tests/scripts/run-layered-tests.sh frontend-ut |
-| 12 | EXEC-20260815-012 | MALL-PAY-AC12-012 | MALL-PAY-AC12-BE-UT-001 | backend-ut | backend-ut | create-new | ./Tests/scripts/run-layered-tests.sh backend-ut |
-| 13 | EXEC-20260815-013 | MALL-PAY-AC13-013 | MALL-PAY-AC13-FE-IT-001 | frontend-it | frontend-it | create-new | ./Tests/scripts/run-layered-tests.sh frontend-it |
-| 14 | EXEC-20260815-014 | MALL-PAY-AC14-014 | MALL-PAY-AC14-FE-IT-001 | frontend-it | frontend-it | create-new | ./Tests/scripts/run-layered-tests.sh frontend-it |
+| 1 | EXEC-20260815-001 | MALL-PAY-AC01-001 | MALL-PAY-AC01-BE-UT-001 | backend-ut | references/layers/backend-ut.md | run-existing | ./Tests/scripts/run-layered-tests.sh backend-ut |
+| 2 | EXEC-20260815-002 | MALL-PAY-AC02-002 | MALL-PAY-AC02-BE-UT-001 | backend-ut | references/layers/backend-ut.md | run-existing | ./Tests/scripts/run-layered-tests.sh backend-ut |
+| 3 | EXEC-20260815-003 | MALL-PAY-AC03-003 | MALL-PAY-AC03-BE-UT-001 | backend-ut | references/layers/backend-ut.md | run-existing | ./Tests/scripts/run-layered-tests.sh backend-ut |
+| 4 | EXEC-20260815-004 | MALL-PAY-AC04-004 | MALL-PAY-AC04-CONTRACT-001 | contract | references/layers/contract.md | run-existing | ./Tests/scripts/run-layered-tests.sh contract |
+| 5 | EXEC-20260815-005 | MALL-PAY-AC05-005 | MALL-PAY-AC05-BE-IT-001 | backend-it | references/layers/backend-it-testcontainers.md | run-existing | ./Tests/scripts/run-layered-tests.sh backend-it |
+| 6 | EXEC-20260815-006 | MALL-PAY-AC06-006 | MALL-PAY-AC06-BE-IT-001 | backend-it | references/layers/backend-it-testcontainers.md | run-existing | ./Tests/scripts/run-layered-tests.sh backend-it |
+| 7 | EXEC-20260815-007 | MALL-PAY-AC07-007 | MALL-PAY-AC07-FE-IT-001 | frontend-it | references/layers/frontend-it.md | run-existing | ./Tests/scripts/run-layered-tests.sh frontend-it |
+| 8 | EXEC-20260815-008 | MALL-PAY-AC08-008 | MALL-PAY-AC08-E2E-001 | e2e | references/layers/e2e.md | run-existing | ./Tests/scripts/run-layered-tests.sh e2e |
+| 9 | EXEC-20260815-009 | MALL-PAY-AC09-009 | MALL-PAY-AC09-BE-UT-001 | backend-ut | references/layers/backend-ut.md | create-new | ./Tests/scripts/run-layered-tests.sh backend-ut |
+| 10 | EXEC-20260815-010 | MALL-PAY-AC10-010 | MALL-PAY-AC10-BE-UT-001 | backend-ut | references/layers/backend-ut.md | create-new | ./Tests/scripts/run-layered-tests.sh backend-ut |
+| 11 | EXEC-20260815-011 | MALL-PAY-AC11-011 | MALL-PAY-AC11-FE-UT-001 | frontend-ut | references/layers/frontend-ut.md | create-new | ./Tests/scripts/run-layered-tests.sh frontend-ut |
+| 12 | EXEC-20260815-012 | MALL-PAY-AC12-012 | MALL-PAY-AC12-BE-UT-001 | backend-ut | references/layers/backend-ut.md | create-new | ./Tests/scripts/run-layered-tests.sh backend-ut |
+| 13 | EXEC-20260815-013 | MALL-PAY-AC13-013 | MALL-PAY-AC13-FE-IT-001 | frontend-it | references/layers/frontend-it.md | create-new | ./Tests/scripts/run-layered-tests.sh frontend-it |
+| 14 | EXEC-20260815-014 | MALL-PAY-AC14-014 | MALL-PAY-AC14-FE-IT-001 | frontend-it | references/layers/frontend-it.md | create-new | ./Tests/scripts/run-layered-tests.sh frontend-it |
 
 ## Execution and Repair Contract
 
-- Test Execution loads only the layer_skill values selected above.
+- Test Execution loads only the layer_reference values selected above.
 - The project CLI and Tests/test-index.yml are execution authorities.
 - Product defects are reported unless product-code repair was explicitly authorized.
 - Design defects return to Case Design and Review; Strategy defects return to Test Strategy.
@@ -94,6 +94,6 @@ decision: READY
 
 ## Validation
 
-    ruby "AI Native/skills/test-agent-workflow/scripts/validate-workflow.rb"
+    ruby ".agents/skills/test-agent-workflow/scripts/validate-workflow.rb"
     python3 "AI Native/scripts/build-litemall-quality-kb.py"
     python3 "AI Native/scripts/run-litemall-skill-benchmark.py"

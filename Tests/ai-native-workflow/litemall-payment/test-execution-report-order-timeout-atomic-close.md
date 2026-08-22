@@ -26,7 +26,7 @@
 | --- | --- | --- | --- |
 | focused UT | `mvn -q -f Tests/backend/pom.xml -Dtest=OrderTimeoutCompensationServiceUnitTest,OrderUnpaidTaskUnitTest test` | PASS | 7 timeout-related unit cases |
 | full workflow | `./Tests/scripts/run-layered-tests.sh all` | PASS | scripts, Backend UT, Contract, Frontend UT/IT, Backend IT, E2E |
-| workflow validation | `ruby AI Native/skills/test-agent-workflow/scripts/validate-workflow.rb` | PASS | `indexed_paths=27`, `skills=19` |
+| workflow validation | `ruby .agents/skills/test-agent-workflow/scripts/validate-workflow.rb` | PASS | `public_skills=6`, `execution_layer_references=6` |
 
 The full `all` lane also generated backend and frontend coverage artifacts.
 Backend IT used Testcontainers against the Colima Docker socket.
